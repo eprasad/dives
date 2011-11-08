@@ -76,28 +76,21 @@ class Vlan
     port
   end
   
-  # Switch FRAME from SOURCE to suitable ports on this vlan.
   def transmit (source, frame, local_only)
     d_mac = frame[0...6]
     s_mac = frame[6...12]
-    puts "Packet from #{switch}/#{source}/#{s_mac.bytes.map{|p|"%02x"%[p]}.join(":")}"
     if s_mac[0].to_i & 0x1 == 0
-      puts "  Learning where #{s_mac.bytes.map{|p|"%02x"%[p]}.join(":")} is"
       macs[s_mac] = [source, Time.now]
     end
     if d = lookup(d_mac)
-      puts "  Forwarding to #{d}"
       d.transmit(frame, self) unless d == source
     else
-      puts "  Broadcasting"
       taps.each do |socket|
         next if socket == source
-        puts "    + #{socket}"
         socket.transmit(frame, self)
       end
       switch.peers.values.each do |socket|
         next if socket == source
-        puts "    + #{socket}"
         socket.transmit(frame, self)
       end unless local_only
     end
