@@ -87,7 +87,7 @@ class Vlan
     end
     if d = lookup(d_mac)
       puts "  Forwarding to #{d}"
-      d.transmit(frame, self)
+      d.transmit(frame, self) unless d == source
     else
       puts "  Broadcasting"
       taps.each do |socket|
