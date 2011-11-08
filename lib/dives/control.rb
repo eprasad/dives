@@ -1,11 +1,4 @@
 
-# A text-based control interface.
-# vlan - list vlans
-# vlan ID - show taps on a vlan
-# vlan ID tap DEV - add tap to a vlan
-# vlan ID mac - show mac table
-# peer - show peer list
-
 module Control
   
   include EM::P::LineText2
