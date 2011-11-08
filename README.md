@@ -71,3 +71,8 @@ The multicast discovery messages are simple strings with the format
 
     HOSTNAME:PORT
 
+These specify the unicast address to forward packets to.
+
+Discovery messages are resent each 1 second. If one peer doesn't hear from another for
+5 seconds, it stops forwarding packets to that peer.
+
