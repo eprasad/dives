@@ -21,12 +21,6 @@ module Switch
       age_peers
     end
     EM.start_unix_domain_server(File.join(unix_dir, "ctl"), Control, self)
-    #@options[:rc].each do |rc|
-    #  c1 = EM.connect_unix_domain(File.join(unix_dir, "ctl"), Chomper)
-    #  open(rc, "r") do |io|
-    #    c1.send_data(io.readline) until io.eof?
-    #  end
-    #end
     watch_adverts(@options[:discovery_address], @options[:discovery_port])
   end
   
