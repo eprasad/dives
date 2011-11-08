@@ -62,3 +62,12 @@ Start Qemu as e.g.
 The qemu socket-based network protocol sends a 4-byte frame length followed
 that many bytes of the frame.
 
+## Peer Protocol
+
+The peer protocol consists of UDP packets containing a 4-byte VLAN id
+followed by the original frame data.
+
+The multicast discovery messages are simple strings with the format
+
+    HOSTNAME:PORT
+
