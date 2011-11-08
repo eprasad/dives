@@ -34,6 +34,8 @@ class Vlan
       end
     when /^tap (\S+)$/
       tap $1
+    when /^listen (\S+) (\d+)$/
+      listen $1, $2.to_i
     else
       reply.send_data "Bad command\n"
     end
