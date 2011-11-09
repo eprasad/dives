@@ -60,7 +60,7 @@ class Vlan
   end
   
   def listen (host, port)
-    EM.start_server(host, port, Listener, self, host, port)
+    EM.start_server(host, port, Listener, self)
   end
   
   def tap (device)
